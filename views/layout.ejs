@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+
+<!-- META -->
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+<!-- META -->
+
+<!-- TITLE -->
+  <title><%= title %></title>
+<!-- TITLE -->
+
+<!-- STYLES -->
+  <link rel='stylesheet' href='/tools/semantic/semantic.css'>
+  <link rel='stylesheet' href='/css/style.min.css'>
+<!-- STYLES -->
+
+</head>
+<body>
+
+<!-- NAV BAR -->
+  <div class='ui menu custom-nav'>
+
+    <!-- LEFT NAV (PARTIAL?) -->
+      <a class='active item'>
+      Blah
+      </a>
+      <a class='item'>
+      Blah
+      </a>
+      <a class='item'>
+      Blah
+      </a>
+    <!-- LEFT NAV -->
+
+    <!-- RIGHT NAV -->
+      <div class='right menu'>
+      <a class='ui item'>
+      Log In
+      </a>
+      <a class='ui item'>
+      Sign Up
+      </a>
+      </div>
+    <!-- RIGHT NAV -->
+
+  </div>
+<!-- NAV BAR -->
+
+<!-- NON-EJS BODY -->
+  <div class='ui card'>
+  </div>
+<!-- NON-EJS BODY -->
+
+<!-- EJS BODY -->
+  <%- body %>
+<!-- EJS BODY -->
+
+<!-- SCRIPTS -->
+  <script src='/tools/semantic/semantic.min.js'>
+<!-- SCRIPTS -->
+
+</body>
+</html>
