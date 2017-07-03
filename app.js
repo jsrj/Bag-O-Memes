@@ -7,6 +7,7 @@
   const bodyParser   = require('body-parser');
   const layouts      = require('express-ejs-layouts');
   const mongoose     = require('mongoose');
+  const partial      = require('express-partials');
 ///// --[@]-- [REQUIRE] ----- -END-
 
 /* DB Connect */
@@ -26,21 +27,21 @@
     app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
   ///// --[@]-- [TITLE AND FAVICON] ----- -END-
 
-  ///// --[#]-- [APP INCLUDES] ----- >>>>>
+  ///// --[#]-- [APP INCLUDES]      ----- >>>>>
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(layouts);
-  ///// --[@]-- [APP INCLUDES] ----- -END-
+  ///// --[@]-- [APP INCLUDES]      ----- -END-
 
-  ///// --[#]-- [ROUTES] ----- >>>>>
+  ///// --[#]-- [ROUTES]            ----- >>>>>
     const index = require('./routes/index');
           app.use('/', index);
-  ///// --[@]-- [ROUTES] ----- -END-
+  ///// --[@]-- [ROUTES]            ----- -END-
 
-  ///// --[#]-- [ERROR HANDLING] ----- >>>>>
+  ///// --[#]-- [ERROR HANDLING]    ----- >>>>>
     // catch 404 and forward to error handler
     app.use((req, res, next) => {
       const err = new Error('Not Found');
@@ -58,7 +59,7 @@
       res.status(err.status || 500);
       res.render('error');
     });
-  ///// --[@]-- [ERROR HANDLING] ----- -END-
+  ///// --[@]-- [ERROR HANDLING]    ----- -END-
 
   module.exports = app;
 ///// --[@]-- [APP] ----- -END-

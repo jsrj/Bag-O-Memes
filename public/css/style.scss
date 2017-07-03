@@ -1,7 +1,12 @@
+.register {
+  background: url('/images/collection1.jpg');
+  background-size: cover;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #fff;
-  background:  url(../images/collection2.jpg), linear-gradient(#515, #AAA);
+  color: #000;
+  // background:  url(../images/collection2.jpg), linear-gradient(#515, #AAA);
   background-size: cover;
   background-repeat: no-repeat;
 
@@ -10,10 +15,36 @@ body {
     }
 
     .custom-nav {
-      margin: 0;
       border-radius: 0 !important;
       height: 60px;
+      width: 99vw;
+      // position: fixed;
+      z-index: 2;
+    }
+    #register-box {
+      box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.8);
+    }
+    #login-box {
+      box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.8);
+    }
+    .card-customize {
+    margin: 2vw !important;
+    height: 320px;
+    display: inline-flex !important;
+    }
+
+    .social-container {
+      margin: 0 auto;
+      overflow: none;
+
+      .social {
+        width: 160px;
+        margin: 0 1.5vw;
+        padding: 15px;
+      }
     }
 }
+
+
 
 

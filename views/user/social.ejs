@@ -1,0 +1,36 @@
+<body class="register">
+
+<div id="login-box" class="ui raised segment" style="width: 30vw; margin:auto; margin-top: 15vh;">
+<h2> log in to collect.co </h2>
+
+
+        <div class="ui buttons social-container">
+        <a class="ui  blue label social" href="/auth/facebook" ><i class="fa fa-facebook" aria-hidden="true"></i>
+        <div class="detail"> Facebook </div>
+        </a>
+        <a class="ui  red  label social" href="/auth/google"   ><i class="fa fa-google"   aria-hidden="true"></i>
+        <div class="detail"> Google   </div>
+        </a>
+      </div>
+
+      <div class="ui horizontal divider">
+      Or
+      </div>
+
+  <form class="ui form" method='post' action='/login' style="margin: 0 auto; width: 75vw;">
+
+      <label for="username-input"> Username: </label>
+      <input  id='username-input' utype="text" name="loginUsername" placeholder="bobbytables">
+      <br />
+
+      <label for="password-input"> Password: </label>
+      <input type="password" name="loginPassword" placeholder="********">
+      <br />
+      <br />
+      <div class="ui panel" style="display: flex; flex-direction: row;">
+        <button class='ui button green'> Log In </button>
+        <div class="or"></div>
+      </div>
+
+  </form>
+</div>

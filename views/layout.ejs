@@ -13,6 +13,7 @@
 
 <!-- STYLES -->
   <link rel='stylesheet' href='/tools/semantic/semantic.css'>
+  <link rel='stylesheet' href='/tools/fa/css/font-awesome.css'>
   <link rel='stylesheet' href='/css/style.min.css'>
 <!-- STYLES -->
 
@@ -20,37 +21,11 @@
 <body>
 
 <!-- NAV BAR -->
-  <div class='ui menu custom-nav'>
-
-    <!-- LEFT NAV (PARTIAL?) -->
-      <a class='active item'>
-      Blah
-      </a>
-      <a class='item'>
-      Blah
-      </a>
-      <a class='item'>
-      Blah
-      </a>
-    <!-- LEFT NAV -->
-
-    <!-- RIGHT NAV -->
-      <div class='right menu'>
-      <a class='ui item'>
-      Log In
-      </a>
-      <a class='ui item'>
-      Sign Up
-      </a>
-      </div>
-    <!-- RIGHT NAV -->
-
-  </div>
+<% include partials/navbar_partial.ejs %>
 <!-- NAV BAR -->
 
 <!-- NON-EJS BODY -->
-  <div class='ui card'>
-  </div>
+
 <!-- NON-EJS BODY -->
 
 <!-- EJS BODY -->
@@ -59,6 +34,7 @@
 
 <!-- SCRIPTS -->
   <script src='/tools/semantic/semantic.min.js'>
+  <script src='/tools/jquery.js'>
 <!-- SCRIPTS -->
 
 </body>
