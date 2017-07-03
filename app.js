@@ -8,10 +8,17 @@
   const layouts      = require('express-ejs-layouts');
   const mongoose     = require('mongoose');
   const partial      = require('express-partials');
+  const session      = require('express-session');
+  const passport     = require('passport');
+
+  require('dotenv').config();
+
+  // Pull all the code from inside of passport-config.js
+  require('./config/passport-config.js');
 ///// --[@]-- [REQUIRE] ----- -END-
 
 /* DB Connect */
-  mongoose.connect('mongodb://localhost/contact-me');
+  mongoose.connect(process.env.MONGODB_URI);
 /* ---------- */
 
 ///// --[#]-- [APP] ----- >>>>>
@@ -34,11 +41,43 @@
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(layouts);
+    app.use
+      (
+      session
+        ({
+          secret: 'BoomShakaLackaNukka',
+          resave: true,
+          saveUninitialized: true
+        })
+      );
   ///// --[@]-- [APP INCLUDES]      ----- -END-
 
   ///// --[#]-- [ROUTES]            ----- >>>>>
+
+    ///// --[#]-- [MIDDLEWARES]----- >>>>>
+      app.use(passport.initialize());
+      app.use(passport.session   ());
+
+      app.use((req, res, next) => {
+        if (req.user)
+        //req.user defined by passport middleware
+        {
+          res.locals.currentUser = req.user;
+          console.log('test');
+        }
+        next();
+      });
+    ///// --[@]-- [MIDDLEWARES]----- -END-
+
     const index = require('./routes/index');
           app.use('/', index);
+
+    const authentication = require('./routes/authentication.js');
+          app.use('/', authentication);
+
+    // const collectionRoutes = require('./routes/room-routes.js');
+    //       app.use('/', collectionRoutes);
+
   ///// --[@]-- [ROUTES]            ----- -END-
 
   ///// --[#]-- [ERROR HANDLING]    ----- >>>>>

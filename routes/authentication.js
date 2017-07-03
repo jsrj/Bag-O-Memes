@@ -1,19 +1,152 @@
 ///// --[#]-- [REQUIRE] ----- >>>>>
-  const bcrypt = require ('bcrypt');
+  const express   = require('express');
+  const router    = express.Router();
+
+  const UserModel = require('../models/user-model.js');
+  const bcrypt    = require ('bcrypt');
+  const passport  = require('passport');
 ///// --[@]-- [REQUIRE] ----- -END-
 
-///// --[#]-- [PASSWORD OBFUSCATION EXAMPLE] ----- >>>>>
-  function passObsf(clearTextPass)
-  {
-    let passIn         = clearTextPass;
-  const salt1          = bcrypt.genSaltSync  (10, clearTextPass);
-  const encryptedPass1 = bcrypt.hashSync     (clearTextPass, salt1);
-  const saltedSalt     = bcrypt.genSaltSync  (10, encryptedPass1);
-  const encryptedPass2 = bcrypt.hashSync     (clearTextPass, saltedSalt);
-  return encryptedPass2;
-  }
+///// --[#]-- [ROUTES] ----- >>>>>
 
-  let   input      = "the meaning of life, the universe, and everything is 42the meaning of life, the universe, and everything is 42the meaning of life, the universe, and everything is 42";
-  const storedHash = passObsf(input);
-  console.log(input + ' => ' + storedHash);
+  ///// --[#]-- [REGISTRATION] ----- >>>>>
+    router.get('/register', (req, res, next) =>
+    {
+      res.render('user/register.ejs');
+    });
+
+    router.post('/register', (req, res, next) =>
+    {
+
+    if (req.body.signupUsername === '' // Username is empty?
+        &&
+        req.body.signupPassword !== '' // Password is not empty?
+        ) {
+          res.locals.usernameErrorMessage = 'Please provide a username.';
+          res.render('user/register.ejs');
+          return;
+        }
+
+    if (req.body.signupUsername !== '' // Username is not empty?
+        &&
+        req.body.signupPassword === '' // Password is empty?
+        ) {
+          res.locals.passwordErrorMessage = 'Please provide a password.';
+          res.render('user/register.ejs');
+          return;
+        }
+
+    if (
+        req.body.signupUsername === '' // Username is empty?
+        &&
+        req.body.signupPassword === '' // Password is empty?
+        ) {
+          res.locals.usernameErrorMessage = 'Please provide a username.';
+          res.locals.passwordErrorMessage = 'Please provide a password.';
+          res.render('user/register.ejs');
+          return;
+        }
+
+          UserModel.findOne({username: req.body.signupUsername},(err, userFromDb) =>
+          {
+            if (userFromDb)
+            {
+              res.locals.usernameErrorMessage = 'Sorry, but that username is taken.';
+              res.render('user/register.ejs');
+              return;
+            }
+            const salt              = bcrypt.genSaltSync(10);
+            console.log('');
+            console.log('SALT SALT SALT SALT SALT: ' + salt);
+            const scrambledPassword = bcrypt.hashSync  (req.body.signupPassword, salt);
+            console.log('SIGN UP PASSWORD: ' + req.body.signupPassword);
+            console.log('SCRAMBLED PASSWORD: ' + scrambledPassword);
+            console.log('');
+            const theUser           = new    UserModel
+            ({
+              fullname    : req.body.signupFullName,
+              username    : req.body.signupUsername,
+              obsfpassword: scrambledPassword,
+              email       : req.body.signupEmail
+            });
+            theUser.save((err) =>
+            {
+              if (err)
+              {
+                console.log(err);
+                next (err);
+                return;
+              }
+              res.redirect('/');
+            });
+          });
+        });
+  ///// --[@]-- [REGISTRATION] ----- -END-
+
+  ///// --[#]-- [FACEBOOK AUTH] ----- >>>>>
+    router.get
+      (
+      '/auth/facebook',
+      passport.authenticate('facebook')
+      );
+
+    router.get
+      (
+      '/auth/facebook/callback',
+      passport.authenticate
+        ('facebook',
+          {
+            successRedirect: '/profile',
+            failureRedirect: '/login'
+          }
+        )
+      );
+  ///// --[@]-- [FACEBOOK AUTH] ----- -END-
+
+  ///// --[#]-- [LOG IN] ----- >>>>>
+      router.get('/login',
+      (req, res, next) =>
+      {
+        res.render('user/login.ejs');
+      });
+
+    router.post('/login',
+      passport.authenticate
+        (
+          'local', // 1st Argument: Name of Strategy
+          {        // 2nd Argument: Settings Object
+            successRedirect: '/',
+            failureRedirect: '/login'
+          }
+        ));
+  ///// --[@]-- [LOG IN] ----- -END-
+
+  ///// --[#]-- [LOG OUT] ----- >>>>>
+      router.get('/logout',
+        (req, res, next) =>
+        {
+          req.logout();
+          res.redirect('/');
+        }
+      );
+  ///// --[@]-- [LOG OUT] ----- -END-
+
+///// --[@]-- [ROUTES] ----- -END-
+
+///// --[#]-- [PASSWORD OBFUSCATION EXAMPLE] ----- >>>>>
+  // function passObsf(clearTextPass)
+  // {
+  //   let passIn         = clearTextPass;
+  // const salt1          = bcrypt.genSaltSync  (10, clearTextPass);
+  // const encryptedPass1 = bcrypt.hashSync     (clearTextPass, salt1);
+  // const saltedSalt     = bcrypt.genSaltSync  (10, encryptedPass1);
+  // const encryptedPass2 = bcrypt.hashSync     (clearTextPass, saltedSalt);
+  // return encryptedPass2;
+  // }
+
+  // let   input      = "the meaning of life, the universe, and everything is 42the meaning of life, the universe, and everything is 42the meaning of life, the universe, and everything is 42";
+  // const storedHash = passObsf(input);
+  // console.log(input + ' => ' + storedHash);
 ///// --[@]-- [PASSWORD OBFUSCATION EXAMPLE] ----- -END-
+
+module.exports = router;

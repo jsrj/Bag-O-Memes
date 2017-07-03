@@ -3,13 +3,14 @@
 
 <!-- REGISTER BOX -->
   <div id="register-box" class="ui raised segment" style="width: 30vw; margin:auto; margin-top: 15vh;">
-  <h2> sign up for collect.co </h2>
+  <h2> sign up for collect.co with: </h2>
+
 
           <div class="ui buttons social-container">
-          <a class="ui  blue label social" href="/auth/facebook" ><i class="fa fa-facebook" aria-hidden="true"></i>
+          <a class="ui  blue label social" href="/social/facebook" ><i class="fa fa-facebook" aria-hidden="true"></i>
           <div class="detail"> Facebook </div>
           </a>
-          <a class="ui  red  label social" href="/auth/google"   ><i class="fa fa-google"   aria-hidden="true"></i>
+          <a class="ui  red  label social" href="/social/google"   ><i class="fa fa-google"   aria-hidden="true"></i>
           <div class="detail"> Google   </div>
           </a>
         </div>
@@ -18,18 +19,52 @@
         Or
         </div>
 
+    <!-- MESSAGE FOR NOOBS -->
+    <% if (typeof messageForNoobs === 'string') { %>
+      <div class="ui yellow ribbon label">
+      <p class='error-message' style="color: black;"><%- messageForNoobs %></p>
+      </div>
+    <% } %>
+    <!-- MESSAGE FOR NOOBS -->
+
     <form class="ui form" id='form' method='post' action='/register' style="margin: 0 auto; width: 75vw;">
 
 
-      <label for="full-name-input"> Your Name </label>
-      <input  id="full-name-input" type="text" name="signupFullName" placeholder="Bobby Tables">
+      <label for="full-name-input"> Your Full Name: </label>
+      <input  id="full-name-input" type="text" name="signupFullName" placeholder="Bloppo Doggo">
       <br />
       <br />
-      <label for="username-input"> Username </label>
-      <input  id='username-input' type="text" name="signupUsername" placeholder="//DROP TABLES">
+      <label for="full-name-input"> eMail: </label>
+      <input  id="full-name-input" type="email" name="signupEmail" placeholder="bloppo@doggo.wow">
       <br />
+
+        <!-- USERNAME ERROR MESSAGE RIBBON -->
+        <% if (typeof usernameErrorMessage === 'string') { %>
+        <br />
+          <div class="ui yellow ribbon label">
+            <p class='error-message' style="color: black;"><%- usernameErrorMessage %></p>
+          </div>
+        <br />
+        <% } %>
+        <!-- USERNAME ERROR MESSAGE RIBBON -->
+
       <br />
-      <label for="password-input"> Password </label>
+      <label for="username-input"> Desired Username: </label>
+      <input  id='username-input' type="text" name="signupUsername" placeholder="A_GOOD_BOY">
+      <br />
+
+        <!-- PASSWORD ERROR MESSAGE RIBBON -->
+        <% if (typeof passwordErrorMessage === 'string') { %>
+        <br />
+          <div class="ui yellow ribbon label">
+            <p class='error-message' style="color: black;"><%- passwordErrorMessage %></p>
+          </div>
+        <br />
+        <% } %>
+        <!-- PASSWORD ERROR MESSAGE RIBBON -->
+
+      <br />
+      <label for="password-input"> Password: </label>
       <input  id="password-input" type="password" name="signupPassword" placeholder="*************">
       <p />
 
