@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
 }
 
-.layoutbody {
+.default-bg {
   background: url("/images/wall.jpg");
   background-size: cover;
   background-repeat: no-repeat;
