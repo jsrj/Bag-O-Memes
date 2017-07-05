@@ -32,7 +32,7 @@
   ///// --[@]-- [VIEW ENGINE SETUP] ----- -END-
 
   ///// --[#]-- [TITLE AND FAVICON] ----- >>>>>
-    app.locals.title = 'Express - Generated with IronGenerator';
+    app.locals.title = 'AudioWall - sample and loop sharing by musicians for musicians';
     app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
   ///// --[@]-- [TITLE AND FAVICON] ----- -END-
 

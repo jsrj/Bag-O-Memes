@@ -1,10 +1,15 @@
 .register {
-  background: url('/images/collection4.jpg');
+  background: url('/images/collection4.jpg'), linear-gradient(black, grey);
   background-size: cover;
   background-repeat: no-repeat;
 
 }
-
+.layoutbody {
+  background: url('/images/wall.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #000;
