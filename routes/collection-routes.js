@@ -38,26 +38,26 @@
     fileUploader.single('fileURL'), // single means 'use multer to process a single file' | matches input field name in view
     (req, res, next) => // callback
       {
-        let uniqueKey = '';
-        let keymode   = '';
-        if (req.user.googleID   !== 'none')
-          {
-            uniqueKey = req.user.googleID;
-            req.user.userkey = uniqueKey;
-            console.log('google');
-          }
-        else if (req.user.facebookID !== 'none')
-          {
-            uniqueKey = req.user.facebookID;
-            req.user.userkey = uniqueKey;
-            console.log('facebook');
-          }
-        else if (req.user.facebookID === 'none' && req.user.googleID === 'none')
-          {
-            uniqueKey = req.user.email;
-            req.user.userkey = uniqueKey;
-            console.log('classic');
-          }
+        // let uniqueKey = '';
+        // let keymode   = '';
+        // if (req.user.googleID   !== 'none')
+        //   {
+        //     uniqueKey = req.user.googleID;
+        //     req.user.userkey = uniqueKey;
+        //     console.log('google');
+        //   }
+        // else if (req.user.facebookID !== 'none')
+        //   {
+        //     uniqueKey = req.user.facebookID;
+        //     req.user.userkey = uniqueKey;
+        //     console.log('facebook');
+        //   }
+        // else if (req.user.facebookID === 'none' && req.user.googleID === 'none')
+        //   {
+        //     uniqueKey = req.user.email;
+        //     req.user.userkey = uniqueKey;
+        //     console.log('classic');
+        //   }
 
         const theCollection = new CollectionModel
         ({
@@ -66,7 +66,7 @@
           collectionCategory: req.body.collectionCategory,
           fileURL           : /uploads/ + req.file.filename, // directory multer creates, and filename is randomized by multer. multer creates req.file.
           owner             : req.user.fullname,
-          ownerByID         : uniqueKey,
+          ownerByID         : req.user._id,
         });
         console.log(req.file);
         theCollection.save((err) =>
@@ -87,7 +87,7 @@
         }
         CollectionModel.find
         (
-          {ownerByID: req.user.userkey},
+          {ownerByID: req.user._id},
 
           (err, collectionResults) =>
             {

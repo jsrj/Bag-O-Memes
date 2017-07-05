@@ -108,7 +108,7 @@
 
               UserModel.findOne
               (
-                {facebookId: profile.id},
+                {facebookID: profile.id},
                 (err, userFromDb) =>
                 /*
                 * 'userFromDb' will be empty if
