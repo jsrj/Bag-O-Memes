@@ -1,0 +1,14 @@
+<h2> test collection </h2>
+
+<% allTheCollections.forEach((oneCollection) => { %>
+
+<div class="ui card" style="margin: 5%; display: flex;">
+  <%= oneCollection.collectionName %>
+  <br />
+  <img src='<%= oneCollection.fileURL %>' style="width: 290px; height: 100%;">
+  Owner: <%= oneCollection.owner %>
+  <br />
+  Details: <%= oneCollection.collectionDetails %>
+</div>
+
+<% }); %>

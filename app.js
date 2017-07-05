@@ -70,20 +70,20 @@
         //req.user defined by passport middleware
         {
           res.locals.currentUser = req.user;
-          console.log('test');
+          console.log(req.user);
         }
         next();
       });
     ///// --[@]-- [MIDDLEWARES]----- -END-
 
-    const index = require('./routes/index');
+    const index            = require('./routes/index');
           app.use('/', index);
 
-    const authentication = require('./routes/authentication.js');
+    const authentication   = require('./routes/authentication.js');
           app.use('/', authentication);
 
-    // const collectionRoutes = require('./routes/room-routes.js');
-    //       app.use('/', collectionRoutes);
+    const collectionRoutes = require('./routes/collection-routes.js');
+          app.use('/', collectionRoutes);
 
   ///// --[@]-- [ROUTES]            ----- -END-
 

@@ -1,0 +1,23 @@
+<div class="ui raised segment" style="width: 60vw; margin: 5vh auto;">
+
+<h2> Add A Collection (as long as it's not NSFW) </h2>
+
+<form class="ui form" method='post' action='/collections' enctype="multipart/form-data">
+  <label for="name-input"> Collection Name: </label>
+  <input  id="name-input" type="text" name="collectionName">
+  <br />
+
+  <label for="collection-details-input"> Details: </label>
+  <textarea id='collection-details-input' name='collectionDetails'></textarea>
+  <br />
+
+  <label for="file-url"> Collection Thumbnail: </label>
+  <input id='file-url' type="file" name="fileURL">
+  <br />
+  <br />
+
+  <button class="ui button"> Save Collection </button>
+
+</form>
+
+</div>

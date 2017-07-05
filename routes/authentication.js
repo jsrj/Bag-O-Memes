@@ -77,7 +77,7 @@
                 next (err);
                 return;
               }
-              res.redirect('/');
+              res.redirect('/login');
             });
           });
         });

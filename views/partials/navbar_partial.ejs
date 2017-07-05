@@ -5,12 +5,18 @@
       <a class='active item' href='/'>
       Home
       </a>
-      <a class='item' href='/collections'>
-      Collections
-      </a>
-      <a class='item' href='/discover'>
-      Discover
-      </a>
+      <% if (typeof currentUser === 'object') { %>
+        <a class='item' href='/collections/new'>
+        Collections
+        </a>
+        <a class='item' href='/discover'>
+        Discover
+        </a>
+      <% } else { %>
+        <a class='item' href='/discover'>
+        Discover
+        </a>
+      <% } %>
     <!-- LEFT NAV -->
 
     <!-- MESSAGE WINDOW -->
