@@ -1,6 +1,7 @@
 .register {
-  background: url("/images/collection1.jpg");
+  background: url("/images/collection4.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 body {

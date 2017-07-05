@@ -1,6 +1,8 @@
 .register {
-  background: url('/images/collection1.jpg');
+  background: url('/images/collection4.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
+
 }
 
 body {
@@ -17,7 +19,7 @@ body {
     #message-window {
       margin: 0 auto;
     }
-    
+
     .custom-nav {
       border-radius: 0 !important;
       height: 60px;
