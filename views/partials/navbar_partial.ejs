@@ -5,29 +5,37 @@
       <a class='active item' href='/'>
       Home
       </a>
-      <a class='item' href='/'>
-      Blah
+      <a class='item' href='/collections'>
+      Collections
       </a>
-      <a class='item' href='/profile'>
-      Profile
+      <a class='item' href='/discover'>
+      Discover
       </a>
     <!-- LEFT NAV -->
 
     <!-- MESSAGE WINDOW -->
-    <div id="message-window" class='ui panel'>
-    Test
-    </div>
     <!-- MESSAGE WINDOW -->
 
     <!-- RIGHT NAV -->
-      <div class='right menu'>
-      <a class='ui item' href="/login">
-      Log In
-      </a>
-      <a class='ui item' href="/register">
-      Sign Up
-      </a>
-      </div>
+      <% if (typeof currentUser === 'object') { %>
+        <div class='right menu'>
+          <a class='ui item' href="/profile">
+          <%= currentUser.fullname %>
+          </a>
+          <a class='ui item' href="/logout">
+          Log Out
+          </a>
+        </div>
+      <% } else { %>
+        <div class='right menu'>
+          <a class='ui item' href="/login">
+          Log In
+          </a>
+          <a class='ui item' href="/register">
+          Sign Up
+          </a>
+        </div>
+      <% } %>
     <!-- RIGHT NAV -->
 
   </div>

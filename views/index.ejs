@@ -1,4 +1,7 @@
 
+
+
+
   <div class='card-container'>
   </div>
 
@@ -27,4 +30,17 @@
     </div>
   </div>
 </div>
+
+    <div id="message-window" class='ui panel'>
+    <% if (typeof currentUser === 'object') { %>
+      <h4>YOURE LOGGED IN <%= currentUser.fullname.toUpperCase() %> </h4>
+    <% } else { %>
+      <h4 style="color: black;"> YOURE NOT LOGGED IN BRO </h4>
+    <% } %>
+    <br>
+    <br>
+
+
+
+    </div>
 

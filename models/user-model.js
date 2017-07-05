@@ -6,12 +6,12 @@
 ///// --[#]-- [USER SCHEMA] ----- >>>>>
   const userSchema = new Schema
     ({
-        fullname     : {type: String},
-        username     : {type: String},
-        email        : {type: String},
+        fullname     : {type: String, default: 'Nameless User'},
+        username     : {type: String, default: this.fullname},
+        email        : {type: String, default: 'zxcvbn@qwerty.iop'},
         obsfpassword : {type: String},
-        facebookID   : {type: String},
-        googleID     : {type: String}
+        facebookID   : {type: String, default: 'none'},
+        googleID     : {type: String, default: 'none'}
       },
       {timestamps: true}
     );

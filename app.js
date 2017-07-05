@@ -10,6 +10,7 @@
   const partial      = require('express-partials');
   const session      = require('express-session');
   const passport     = require('passport');
+  // const react        = require('react');
 
   require('dotenv').config();
 
@@ -24,6 +25,7 @@
 ///// --[#]-- [APP] ----- >>>>>
   const app = express();
 
+
   ///// --[#]-- [VIEW ENGINE SETUP] ----- >>>>>
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
@@ -33,6 +35,8 @@
     app.locals.title = 'Express - Generated with IronGenerator';
     app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
   ///// --[@]-- [TITLE AND FAVICON] ----- -END-
+
+
 
   ///// --[#]-- [APP INCLUDES]      ----- >>>>>
     app.use(logger('dev'));
@@ -45,7 +49,7 @@
       (
       session
         ({
-          secret: 'BoomShakaLackaNukka',
+          secret: 'sadfkayf987asfuahsdfojq34h5oiushfdOI&^SD(F&^SDFU43i24uioerug8ds',
           resave: true,
           saveUninitialized: true
         })
@@ -58,7 +62,10 @@
       app.use(passport.initialize());
       app.use(passport.session   ());
 
+
+
       app.use((req, res, next) => {
+         res.locals.userDude = 'test';
         if (req.user)
         //req.user defined by passport middleware
         {

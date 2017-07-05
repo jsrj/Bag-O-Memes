@@ -19,6 +19,7 @@
       (
         (userFromDb, next) =>
         {
+          console.log(userFromDb);
           next(null, userFromDb._id);
         }
       );
@@ -61,7 +62,7 @@
         },  (formUsername, formPassword, next) =>
             //Callback when user attempts to login
               {
-                UserModel.findOne({username: formUsername},(err,userFromDb) =>
+                UserModel.findOne({username: formUsername},(err, userFromDb) =>
                 {
                   if (err)
                   {
@@ -75,7 +76,7 @@
                     next(null, false);
                     return;
                   }
-                  if (bcrypt.compareSync(formPassword, userFromDb.encryptedPassword) === 'false')
+                  if (bcrypt.compareSync(formPassword, userFromDb.obsfpassword) === 'false')
                   {
                     next(null, false);
                     return;
@@ -104,13 +105,6 @@
         },
         (accessToken, refreshToken, profile, next) => // 2nd Argument -> callback
             {
-              console.log('');
-              console.log(' ----- FACEBOOK PROFILE INFO ----- >>>>>> ');
-              console.log('Profile: ' + profile);
-              console.log('');
-              console.log('Access Token: ' + accessToken);
-              console.log('');
-              console.log('Refresh Token: ' + refreshToken);
 
               UserModel.findOne
               (
@@ -129,25 +123,81 @@
                   * If its their first time,
                   * save them to DB.
                   */
-                  const theUser = new UserModel
+                  const newUser = new UserModel
                   (
                     {
-                      fullName  : profile.displayName,
-                      facebookId: profile.id
+                      fullname  : profile.displayName,
+                      facebookID: profile.id
                     }
                   );
-                  theUser.save((err) =>
+                  newUser.save((err) =>
                   {
                     if (err) {
                       next(err);
                       return;
                     }
-                    next(null, theUser);
+                    next(null, newUser);
                   });
                 });
             }
       ));
   ///// --[@]-- [FACEBOOK AUTH] ----- -END-
+
+  ///// --[#]-- [GOOGLE AUTH]----- >>>>>
+     /* * * * * * * * * * * * * * * * * * * * *
+      * Recieves google+ user                *
+      * information and saves it to DB,       *
+      * unless it has been previously saved,  *
+      * then we just log them in.             *
+      * * * * * * * * * * * * * * * * * * * * */
+
+
+    passport.use(new GoogleStrategy
+      (
+        {
+          clientID: process.env.GID,
+          clientSecret: process.env.GSEC,
+          callbackURL: "/auth/google/callback"
+        },
+        (accessToken, refreshToken, profile, done) =>
+          {
+
+              console.log('');
+              console.log(' ----- GOOGLE PROFILE INFO ----- >>>>>> ');
+              console.log(profile);
+              console.log('');
+              console.log('Access Token: ' + accessToken);
+              console.log('');
+              console.log('Refresh Token: ' + refreshToken);
+
+          UserModel.findOne
+            (
+              { googleID: profile.id },
+                (err, user) =>
+                  {
+                    if (err) {
+                      return done(err);
+                    }
+                    if (user) {
+                      return done(null, user);
+                    }
+
+                    const newUser = new UserModel({
+                      googleID: profile.id,
+                      fullname: profile.displayName
+                    });
+
+            newUser.save((err) => {
+              if (err) {
+                return done(err);
+              }
+              done(null, newUser);
+            });
+          });
+
+        }
+      ));
+  ///// --[@]-- [GOOGLE AUTH]----- -END-
 
 
 ///// --[@]-- [AUTHENTICATION STRATEGIES] ----- -END-

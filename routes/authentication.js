@@ -96,12 +96,38 @@
       passport.authenticate
         ('facebook',
           {
-            successRedirect: '/profile',
+            successRedirect: '/',
             failureRedirect: '/login'
           }
         )
       );
   ///// --[@]-- [FACEBOOK AUTH] ----- -END-
+
+  ///// --[#]-- [GOOGLE AUTH] ----- >>>>>
+    router.get
+      (
+        "/auth/google",
+        passport.authenticate("google",
+        {
+          scope: [
+                  "https://www.googleapis.com/auth/plus.login",
+                  "https://www.googleapis.com/auth/plus.profile.emails.read"
+                  ]
+        }
+      ));
+
+    router.get
+      (
+        "/auth/google/callback",
+        passport.authenticate
+          ("google",
+            {
+              failureRedirect: "/login",
+              successRedirect: "/"
+            }
+          )
+      );
+  ///// --[@]-- [GOOGLE AUTH] ----- -END-
 
   ///// --[#]-- [LOG IN] ----- >>>>>
       router.get('/login',
