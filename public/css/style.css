@@ -21,8 +21,8 @@ body #message-window {
 
 body .custom-nav {
   border-radius: 0 !important;
-  height: 60px;
-  width: 99vw;
+  height: 45px;
+  width: 100vw;
   z-index: 2;
 }
 
