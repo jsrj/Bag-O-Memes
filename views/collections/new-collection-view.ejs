@@ -1,22 +1,23 @@
 <div class="ui raised segment" style="width: 60vw; margin: 5vh auto;">
 
-<h2> Add A Collection (as long as it's not NSFW) </h2>
+<h2> Create A New Bag </h2>
+
 
 <form class="ui form" method='post' action='/collections' enctype="multipart/form-data">
-  <label for="name-input"> Collection Name: </label>
+  <label for="name-input"> Name your Bag o' Memes: </label>
   <input  id="name-input" type="text" name="collectionName">
   <br />
-
-  <label for="collection-details-input"> Details: </label>
+  <br />
+  <label for="collection-details-input"> Details (What's in the bag?): </label>
   <textarea id='collection-details-input' name='collectionDetails'></textarea>
   <br />
-
-  <label for="file-url"> Collection Thumbnail: </label>
+  <br />
+  <label for="file-url"> What Do You Want It's Avatar to Be?: </label>
   <input id='file-url' type="file" name="fileURL">
   <br />
   <br />
 
-  <button class="ui button"> Save Collection </button>
+  <button class="ui button"> Save Bag </button>
 
 </form>
 

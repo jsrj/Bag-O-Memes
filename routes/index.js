@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const howler  = require('howler');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -16,6 +17,8 @@ router.get('/register', (req, res, next) => {
 
   res.render('user/register');
 });
+
+
 
 module.exports = router;
 

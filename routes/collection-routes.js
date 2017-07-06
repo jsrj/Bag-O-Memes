@@ -4,18 +4,59 @@
 
   const CollectionModel = require('../models/collection-model.js');
   const UserModel       = require('../models/user-model.js');
+
   const multer          = require('multer');
+  const reddit          = require('redditor');
 ///// --[@]-- REQUIRE ----- -END-
 
 ///// --[#]-- [COLLECTION ROUTES] ----- >>>>>
+
+router.get('/discover',
+  (req, res, next) =>
+    {
+      mode = 'reddit'; // change to be equal to a param sent from discover link
+      if (mode === 'reddit')
+      {
+              let RedditDiscoverType = '/r/gifs'; // change to be equal to a param that is sent from each link in discover
+              res.locals.subreddit = RedditDiscoverType;
+              console.log('');
+              console.log('');
+              console.log('Subreddit: ' + RedditDiscoverType);
+              console.log('');
+              reddit.get(RedditDiscoverType+'.json', function(err, response) {
+            if(err) throw err;
+            // response.data.children.forEach(function(post) {
+            // console.log(post.data.url); //
+            // });
+
+            res.locals.redditResponse = response.data.children;
+            res.render('collections/discover.ejs');
+        });
+      }
+      else if (mode === 'giphy')
+      {
+
+      }
+});
+
+
   router.get('/collections/new',
     (req, res, next) =>
       {
-        if (req.user) {
-          res.render('collections/new-collection-view.ejs');
-        } else {
-          res.render('user/login.ejs');
+        if (!req.user) {
+          res.redirect('/login');
+          return;
         }
+
+        reddit.get('/r/reallifedoodles.json', function(err, response) {
+            if(err) throw err;
+            // response.data.children.forEach(function(post) {
+            // console.log(post.data.url); //
+            // });
+
+            res.locals.redditResponse = response.data.children;
+            res.render('collections/new-collection-view.ejs');
+        });
       }
   );
 

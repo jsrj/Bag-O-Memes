@@ -1,41 +1,13 @@
-
-<body class="default-bg">
-
-
-  <div class='card-container'>
+<div class='card-container'>
   </div>
 
-<div class="ui cards">
-  <div class="card">
-    <div class="image">
-      <img src="http://i.imgur.com/oZDNsa1.gif">
-    </div>
-    <div class="content">
-      <div class="header">Super Awesome Reddit Collection</div>
-      <div class="meta">
-        <a>Reddit</a>
-      </div>
-      <div class="description">
-        From /r/livedoodles
-      </div>
-    </div>
-    <div class="extra content">
-      <span class="right floated">
-        Edit | Share
-      </span>
-      <span>
-        <i class="user icon"></i>
-        42 Collected Things
-      </span>
-    </div>
-  </div>
-</div>
+
 
     <div id="message-window" class='ui panel'>
     <% if (typeof currentUser === 'object') { %>
-      <h4>YOURE LOGGED IN <%= currentUser.fullname.toUpperCase() %> </h4>
+      <h4 style="color: white;">YOURE LOGGED IN <%= currentUser.fullname.toUpperCase() %> </h4>
     <% } else { %>
-      <h4 style="color: black;"> YOURE NOT LOGGED IN BRO </h4>
+      <h4 style="color: white;"> YOURE NOT LOGGED IN BRO </h4>
     <% } %>
     <br>
     <br>
@@ -43,4 +15,3 @@
 
 
     </div>
-</body>

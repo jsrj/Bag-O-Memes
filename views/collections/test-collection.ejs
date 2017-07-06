@@ -1,8 +1,8 @@
 
 <body class="default-bggit ">
 
-<h2> test collection </h2>
-
+<h2> <%= currentUser.fullname %>'s Collections </h2>
+<div class="ui panel main-display">
 <% allTheCollections.forEach((oneCollection) => { %>
 
 <div class="ui card" style="margin: 5%; display: flex;">
@@ -15,3 +15,4 @@
 </div>
 
 <% }); %>
+</div>

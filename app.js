@@ -32,8 +32,8 @@
   ///// --[@]-- [VIEW ENGINE SETUP] ----- -END-
 
   ///// --[#]-- [TITLE AND FAVICON] ----- >>>>>
-    app.locals.title = 'AudioWall - sample and loop sharing by musicians for musicians';
-    app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
+    app.locals.title = 'Bag o\' Memes - Discover and Share ALL the things!';
+    app.use(favicon(path.join(__dirname, 'public/images', 'memebag.png')));
   ///// --[@]-- [TITLE AND FAVICON] ----- -END-
 
 
