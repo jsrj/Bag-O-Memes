@@ -70,13 +70,18 @@ router.get('/discover',
     fileUploader.single('fileURL'), // single means 'use multer to process a single file' | matches input field name in view
     (req, res, next) => // callback
       {
-
+        let dbFile;
+          if (typeof req.file === 'undefined') {
+            dbFile = req.body.linkURL;
+          } else {
+            dbFile = /uploads/ + req.file.filename;
+          }
         const theCollection = new CollectionModel
         ({
           collectionName    : req.body.collectionName,
           collectionDetails : req.body.collectionDetails,
           collectionCategory: req.body.collectionCategory,
-          fileURL           : /uploads/ + req.file.filename, // directory multer creates, and filename is randomized by multer. multer creates req.file.
+          fileURL           : dbFile, // directory multer creates, and filename is randomized by multer. multer creates req.file.
           owner             : req.user.fullname,
           ownerByID         : req.user._id,
         });
@@ -87,8 +92,18 @@ router.get('/discover',
             next(err);
             return;
           }
-          req.user.bagCount += 1;
-          res.redirect('/collections');
+          UserModel.findByIdAndUpdate(req.user._id,{
+                $set: {bagCount : req.user.bagCount + 1}
+          }, (err, result) => {
+            if (err){
+              next(err);
+              return;
+            }
+            res.redirect('/collections');
+          });
+
+
+
         });
       });
 

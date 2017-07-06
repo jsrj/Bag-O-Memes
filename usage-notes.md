@@ -17,3 +17,6 @@ reddit.get('/r/reallifedoodles.json', function(err, response) {
 #May Need in new-collection-view
 <% var fixedUrl = split.join('.'); %>
       <% return fixedUrl; %>
+
+      usermode findbyid
+      usermodel update
