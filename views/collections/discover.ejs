@@ -1,14 +1,20 @@
 <!-- COLLECTION HEADER -->
-<div class="ui panel" style="height: 25vh; background-color: white; width: 75vw; margin: 1% auto;">
-<img src="/images/reddit.png" style="width: 10vw; height 10vh; margin: 5% auto; clear: both; overflow: auto;">
+<!-- Mode Logo -->
+<div class="ui panel" style="width: 12vw; height: 12vw; background-color: white; margin: 1% auto; border: none; border-radius: 100%">
+  <img src="/images/<%= mode %>.png" style="width: 10vw; height 10vh; margin: 8.5%;">
+
 </div>
+<!-- MODE Logo -->
+<!-- Source/search type | subreddit -->
+<!-- Source/search type | subreddit -->
 <!-- COLLECTION HEADER -->
 
 <!-- COLLECTION CONTENT -->
 <div class="discover-board ui cards raised segment">
-<% redditResponse.forEach((post) => { %>
-
- <!-- PARSE URLS AND DISPLAY VALID CONTENT -->
+<% response.forEach((post) => { %>
+<% if (dankSource === 'reddit') { %>
+  <!-- REDDIT BASED RESPONSES -->
+  <!-- PARSE URLS AND DISPLAY VALID CONTENT -->
     <% function parseUrl(url, author, source, title, domain, thumbnail, nsfw) { %>
 
       <% var split = url.split('.'); %>
@@ -17,6 +23,7 @@
 
       <% if (nsfw) { %>
       <!-- -->
+
       <div class="card treasure">
 
           <div class="image">
@@ -60,8 +67,8 @@
             More | Share
           </span>
           <span>
-            <i class="user icon"></i>
-            Add To Bag
+            <i class="hand lizard icon"></i>
+            <a>Add To Bag</a>
           </span>
         </div>
 
@@ -95,8 +102,8 @@
             More | Share
           </span>
           <span>
-            <i class="user icon"></i>
-            Add To Bag
+            <i class="hand lizard icon"></i>
+            <a>Add To Bag</a>
           </span>
         </div>
 
@@ -111,6 +118,37 @@
   <% } %>
   <!-- PARSE URLS AND DISPLAY VALID CONTENT -->
   <% parseUrl(post.data.url, post.data.author, post.data.subreddit_name_prefixed, post.data.title, post.data.domain, post.data.thumbnail, post.data.over_18); %>
+  <!-- REDDIT BASED RESPONSES -->
+  <% } %>
+
+<% if (dankSource === 'giphy') { %>
+    <!-- GIPHY BASED RESPONSES -->
+          <div class="card treasure">
+
+          <div class="image">
+              <img class="image" src="<%= post.images.downsized_large.url %>" style="width: 290px !important; height: 150px;">
+          </div>
+
+        <div class="content">
+          <div class="header">  title </div>
+          <div class="meta">By: author</div>
+          <div class="description">
+            &nbsp;From:  <a href="<%= post.source %>" target="_blank"><%= post.source_tld %></a>
+          </div>
+        </div>
+
+        <div class="extra content">
+          <span class="right floated">
+            More | Share
+          </span>
+          <span>
+            <i class="hand lizard icon"></i>
+            <a>Add To Bag</a>
+          </span>
+        </div>
+<% } %>
+
 <% }); %>
+
 </div>
 <!-- COLLECTION CONTENT -->

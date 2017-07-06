@@ -35,24 +35,27 @@
           <div class="menu">
             <div class="header">Quick Search</div>
 
-            <a class="item" onClick="<% subreddit='/r/reallifedoodles' %>" href='/discover'>
+            <a class="item" onClick="<%= subreddit='/r/reallifedoodles' %>" href='/discover'>
               <img class="ui avatar image" src="/images/reddit.png" style="width: 30px !important; height: 50px !important; border: 1 solid transparent; border-radius: 100%;">
               /r/realifedoodles
             </a>
-            <a class="item" onClick="<% subreddit='/r/funny' %>" href='/discover'>
+            <a class="item" onClick="<%= subreddit='/r/funny' %>" href='/discover'>
               <img class="ui avatar image" src="/images/reddit.png" style="width: 30px !important; height: 50px !important; border: 1 solid transparent; border-radius: 100%;">
               /r/funny
             </a>
-            <a class="item" onClick="<% subreddit='/r/photoshopbattles/' %>" href='/discover'>
+            <a class="item" onClick="<%= subreddit='/r/photoshopbattles/' %>" href='/discover'>
               <img class="ui avatar image" src="/images/reddit.png" style="width: 30px !important; height: 50px !important; border: 1 solid transparent; border-radius: 100%;">
               /r/photoshopbattles
             </a>
 
             <div class="divider"></div>
-            <a class="item" onClick="<% subreddit='/r/' %>" href='/discover'>
+            <div class="header">Another Subreddit</div>
+            <div class="item" value="<%= subreddit='/r/' %>">
               <img class="ui avatar image" src="/images/reddit.png" style="width: 30px !important; height: 50px !important; border: 1 solid transparent; border-radius: 100%;">
-              Front Page
-            </a>
+              /r/
+              <input class="ui search" placeholder='awesomesubreddit'>
+            </div>
+
           </div>
 
       </div>

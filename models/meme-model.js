@@ -14,7 +14,7 @@
         originalPoster    : {type: String,  default: 'Unknown'}, //....................post.data.author
         sharedBy          : {type: String}, //.........................................currentUser.fullname
         fileURL           : {type: String}, //.........................................post.data.url
-        thumbnailURL      : {type: String,  default: '/images/default-thumbnail.jpg'}//post.data.thumbnail
+        thumbnailURL      : {type: String,  default: '/images/default-thumbnail.jpg'},//post.data.thumbnail
         comments          : {type: Array,   default: []},//............................these will have to come from individual users.
         upVotes           : {Type: Number,  default: 0},//.............................increment similarly to user's bagCount
         downVotes         : {type: Number,  default: 0},//.............................increments similarly to user's bagCount
@@ -25,7 +25,7 @@
 ///// --[@]-- [USER SCHEMA] ----- -END-
 
 ///// --[#]-- [CREATION OF USER MODEL BASED ON SCHEMA] ----- >>>>>
-  const MemeModel = mongoose.model('Collection', memeSchema);
+  const MemeModel = mongoose.model('Meme', memeSchema);
 ///// --[@]-- [CREATION OF USER MODEL BASED ON SCHEMA] ----- -END-
 
 ///// --[#]-- [EXPORT USER MODEL] ----- >>>>>

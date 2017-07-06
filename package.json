@@ -17,6 +17,7 @@
     "express-ejs-layouts": "~2.2.0",
     "express-partials": "^0.3.0",
     "express-session": "^1.15.3",
+    "giphy-wrapper": "0.0.3",
     "howler": "^2.0.4",
     "mongoose": "~4.8.5",
     "morgan": "~1.7.0",

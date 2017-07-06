@@ -2,40 +2,50 @@
   const express         = require('express');
   const router          = express.Router();
 
-  const MemebagModel = require('../models/memebag-model.js');
+  const MemeModel       = require('../models/meme-model.js');
+  const MemebagModel    = require('../models/memebag-model.js');
   const UserModel       = require('../models/user-model.js');
 
   const multer          = require('multer');
   const reddit          = require('redditor');
+  const giphy           = require('giphy-wrapper')(process.env.giphyAPI);
 ///// --[@]-- REQUIRE ----- -END-
 
 ///// --[#]-- [COLLECTION ROUTES] ----- >>>>>
 
+
 router.get('/discover',
   (req, res, next) =>
     {
-      mode = 'reddit'; // change to be equal to a param sent from discover link
+      mode = 'giphy'; // change to be equal to a param sent from discover link
       if (mode === 'reddit')
       {
-              let RedditDiscoverType = ''; // change to be equal to a param that is sent from each link in discover
+              let RedditDiscoverType = 'r/reallifedoodles'; // change to be equal to a param that is sent from each link in discover
               res.locals.subreddit = RedditDiscoverType;
               console.log('');
               console.log('');
               console.log('Subreddit: ' + RedditDiscoverType);
               console.log('');
-              reddit.get(RedditDiscoverType+'.json', function(err, response) {
-            if(err) throw err;
-            // response.data.children.forEach(function(post) {
-            // console.log(post.data.url); //
-            // });
 
-            res.locals.redditResponse = response.data.children;
-            res.render('collections/discover.ejs');
+              reddit.get(RedditDiscoverType+'.json', function(err, response) {
+                if(err) throw err;
+
+                res.locals.dankSource = mode;
+                res.locals.response = response.data.children;
+                res.render('collections/discover.ejs');
         });
       }
       else if (mode === 'giphy')
       {
+              giphy.search('random', 10, 0, 'pg',function (err, data) {
+                if(err) throw err;
 
+                res.locals.dankSource = mode;
+                res.locals.response   = data.data;
+                res.render('collections/discover.ejs');
+
+    // use data, returns the data as an object
+});
       }
 });
 
@@ -101,11 +111,29 @@ router.get('/discover',
             }
             res.redirect('/collections');
           });
-
-
-
         });
       });
+
+  // router.post(
+  //   '/add/:sack',
+  //     (req, res, next) => {
+
+  //     }
+  //     const theMeme = new MemeModel
+  //   ({
+  //       collectionName    : {type: String, default: 'Untitled Collection'},//Should never actually store as Untitled. require user to name it.
+  //       collectionCatgory : {type: String, default: 'Uncategorized'},//......Will This actually be used? Remove if not.
+  //       collectionDetails : {type: String},//................................Should never be blank. Required data from users.
+  //       owner             : {type: String, default: 'Unknown'},//............Autofilled from currentUser | req.user
+  //       ownerByID         : {type: String},//................................May not need this now that serialization is working
+  //       itemCount         : {type: Number, default: 0},//....................Should increment and decrement when a bag is crated or deleted
+  //       fileURL           : {type: String},//................................Thumbnail URL
+  //       ALLtheMemes       : {type: Array,  default: []},//...................An array of every meme saved do this bag.
+  //       comments          : {type: Array, default: []}//.....................An array that stores any comment made by users that bag was shared with.
+  //     },
+  //     {timestamps: true}
+  //   );
+  // )
 
   router.get('/collections',
     (req, res, next) =>
