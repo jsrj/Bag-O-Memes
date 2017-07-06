@@ -11,7 +11,8 @@
         email        : {type: String, default: 'zxcvbn@qwerty.iop'},
         obsfpassword : {type: String},
         facebookID   : {type: String, default: 'none'},
-        googleID     : {type: String, default: 'none'}
+        googleID     : {type: String, default: 'none'},
+        bagCount     : {type: Number, default: 0}
       },
       {timestamps: true}
     );

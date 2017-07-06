@@ -43,6 +43,11 @@ body a {
   color: #00B7FF;
 }
 
+body .count-number {
+  font-size: 8pt !important;
+  color: grey !important;
+}
+
 body #message-window {
   margin: 0 auto;
 }

@@ -1,10 +1,41 @@
 
 <body class="default-bggit ">
 
-<h2> <%= currentUser.fullname %>'s Collections </h2>
-<div class="ui panel main-display">
+<h2 style="color: white; margin-left: 20px;"> <%= currentUser.fullname %>'s Meme Bags </h2>
+<div class="discover-board ui cards raised segment">
+
 <% allTheCollections.forEach((oneCollection) => { %>
 
+<!-- -->
+      <div class="card treasure">
+
+          <div class="image">
+              <img class="image" src="<%= oneCollection.fileURL %>" style="width: 290px !important; height: 150px;">
+
+          </div>
+
+        <div class="content">
+          <div class="header"><%= oneCollection.collectionName %></div>
+          <div class="meta">By: <%= oneCollection.owner %></div>
+          <br />
+          <br />
+          <div class="description">
+          <%= oneCollection.collectionDetails %>
+          </div>
+        </div>
+
+        <div class="extra content">
+          <span class="right floated">
+            Edit | Share
+          </span>
+          <span>
+            <i class="diamond icon"></i>
+            <%= oneCollection.itemCount %> Things Inside
+          </span>
+        </div>
+
+      </div>
+      <!-- -->
 <div class="ui card" style="margin: 5%; display: flex;">
   <%= oneCollection.collectionName %>
   <br />

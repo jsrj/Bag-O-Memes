@@ -47,16 +47,7 @@ router.get('/discover',
           res.redirect('/login');
           return;
         }
-
-        reddit.get('/r/reallifedoodles.json', function(err, response) {
-            if(err) throw err;
-            // response.data.children.forEach(function(post) {
-            // console.log(post.data.url); //
-            // });
-
-            res.locals.redditResponse = response.data.children;
             res.render('collections/new-collection-view.ejs');
-        });
       }
   );
 
@@ -79,26 +70,6 @@ router.get('/discover',
     fileUploader.single('fileURL'), // single means 'use multer to process a single file' | matches input field name in view
     (req, res, next) => // callback
       {
-        // let uniqueKey = '';
-        // let keymode   = '';
-        // if (req.user.googleID   !== 'none')
-        //   {
-        //     uniqueKey = req.user.googleID;
-        //     req.user.userkey = uniqueKey;
-        //     console.log('google');
-        //   }
-        // else if (req.user.facebookID !== 'none')
-        //   {
-        //     uniqueKey = req.user.facebookID;
-        //     req.user.userkey = uniqueKey;
-        //     console.log('facebook');
-        //   }
-        // else if (req.user.facebookID === 'none' && req.user.googleID === 'none')
-        //   {
-        //     uniqueKey = req.user.email;
-        //     req.user.userkey = uniqueKey;
-        //     console.log('classic');
-        //   }
 
         const theCollection = new CollectionModel
         ({
@@ -116,6 +87,7 @@ router.get('/discover',
             next(err);
             return;
           }
+          req.user.bagCount += 1;
           res.redirect('/collections');
         });
       });
@@ -125,6 +97,9 @@ router.get('/discover',
       {
         if (req.user === undefined) {
           res.redirect('/login');
+        }
+        if (req.user.bagCount === 0) {
+          res.redirect('/collections/new');
         }
         CollectionModel.find
         (
