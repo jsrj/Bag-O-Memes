@@ -2,7 +2,7 @@
   const express         = require('express');
   const router          = express.Router();
 
-  const CollectionModel = require('../models/collection-model.js');
+  const MemebagModel = require('../models/memebag-model.js');
   const UserModel       = require('../models/user-model.js');
 
   const multer          = require('multer');
@@ -76,7 +76,7 @@ router.get('/discover',
           } else {
             dbFile = /uploads/ + req.file.filename;
           }
-        const theCollection = new CollectionModel
+        const theBag = new MemebagModel
         ({
           collectionName    : req.body.collectionName,
           collectionDetails : req.body.collectionDetails,
@@ -86,7 +86,7 @@ router.get('/discover',
           ownerByID         : req.user._id,
         });
         console.log(req.file);
-        theCollection.save((err) =>
+        theBag.save((err) =>
         {
           if(err) {
             next(err);
@@ -116,7 +116,7 @@ router.get('/discover',
         if (req.user.bagCount === 0) {
           res.redirect('/collections/new');
         }
-        CollectionModel.find
+        MemebagModel.find
         (
           {ownerByID: req.user._id},
 
@@ -127,7 +127,7 @@ router.get('/discover',
                 return;
               }
               res.locals.currentUser = req.user;
-              res.locals.allTheCollections = collectionResults;
+              res.locals.alltheBags = collectionResults;
               res.render('collections/test-collection.ejs');
             }
         );
