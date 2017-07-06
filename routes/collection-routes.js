@@ -17,7 +17,7 @@ router.get('/discover',
       mode = 'reddit'; // change to be equal to a param sent from discover link
       if (mode === 'reddit')
       {
-              let RedditDiscoverType = 'git '; // change to be equal to a param that is sent from each link in discover
+              let RedditDiscoverType = ''; // change to be equal to a param that is sent from each link in discover
               res.locals.subreddit = RedditDiscoverType;
               console.log('');
               console.log('');
