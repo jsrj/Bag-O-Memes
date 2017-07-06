@@ -15,7 +15,7 @@
 <% if (dankSource === 'reddit') { %>
   <!-- REDDIT BASED RESPONSES -->
   <!-- PARSE URLS AND DISPLAY VALID CONTENT -->
-    <% function parseUrl(url, author, source, title, domain, thumbnail, nsfw) { %>
+    <% function parseUrl(url, author, source, title, domain, thumbnail, nsfw, images) { %>
 
       <% var split = url.split('.'); %>
       <% console.log('split: ' + split); %>
@@ -126,12 +126,11 @@
           <div class="card treasure">
 
           <div class="image">
-              <img class="image" src="<%= post.images.downsized_large.url %>" style="width: 290px !important; height: 150px;">
+              <img src="<%= post.images.downsized_large.url %>" style="width: 290px !important; height: 150px;">
           </div>
 
         <div class="content">
-          <div class="header">  title </div>
-          <div class="meta">By: author</div>
+          <div class="meta"># <%= searchWord %></div>
           <div class="description">
             &nbsp;From:  <a href="<%= post.source %>" target="_blank"><%= post.source_tld %></a>
           </div>
@@ -145,6 +144,7 @@
             <i class="hand lizard icon"></i>
             <a>Add To Bag</a>
           </span>
+        </div>
         </div>
 <% } %>
 

@@ -37,9 +37,11 @@ router.get('/discover',
       }
       else if (mode === 'giphy')
       {
-              giphy.search('random', 10, 0, 'pg',function (err, data) {
+              let giphySearch = 'random';
+              giphy.search(giphySearch, 10, 0, 'pg',function (err, data) {
                 if(err) throw err;
 
+                res.locals.searchWord = giphySearch;
                 res.locals.dankSource = mode;
                 res.locals.response   = data.data;
                 res.render('collections/discover.ejs');
