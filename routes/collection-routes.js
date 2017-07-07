@@ -121,7 +121,7 @@
 
   ///// --[#]-- [POST] [/COLLECTIONS] ----- >>>>>
       //////////////////////////////////////////////////////////////////////
-      // post routes can handle multiple arguments,     asdfa                  //
+      // post routes can handle multiple arguments,     a                 //
       // first is route, last is callback, but everything else is custom  //
       //////////////////////////////////////////////////////////////////////
 
@@ -173,7 +173,7 @@
             if(!req.user) {
               res.redirect('/login');
             }
-            MemebagModel.find
+            MemebagModel.findOne
               (
                 {collectionName : "A BAG"},
                 (err, theBag) =>
@@ -183,11 +183,11 @@
                       return;
                     }
                     res.locals.currentUser = req.user;
-                    res.locals.theBag      = theBag[0];
+                    res.locals.theBag      = theBag;
                     console.log('----------');
                     console.log('--------------------');
                     console.log('------------------------------');
-                    console.log(theBag[0]);
+                    console.log(theBag);
                     console.log('------------------------------');
                     console.log('--------------------');
                     console.log('----------');
