@@ -17,28 +17,28 @@
     router.get('/discover',
       (req, res, next) =>
         {
-          mode = 'giphy'; // change to be equal to a param sent from discover link
-          searchWord = req.query.searchWord;
+
+          let searchWord = req.query.searchWord;
+          const mode       = req.query.modeSelecta;
+          res.locals.mode = mode;
           if (typeof searchWord === undefined)
             res.redirect('/');
           {
-            searchWord === 'random';
           }
           if (mode === 'reddit')
           {
                   // console.log(req.body.searchWord);
-                  let redditSearch = searchWord; // change to be equal to a param that is sent from each link in discover
-                  res.locals.subreddit = redditSearch;
+
                   console.log('');
                   console.log('');
-                  console.log('Subreddit: ' + redditSearch);
+                  console.log('Subreddit: ' + searchWord);
                   console.log('');
 
-                  reddit.get('r/' + redditSearch + '.json', function(err, response) {
+                  reddit.get('r/' + searchWord + '.json', function(err, response) {
                     if(err) throw err;
 
                     res.locals.dankSource = mode;
-                    res.locals.response = response.data.children;
+                    res.locals.response   = response.data.children;
                     res.render('collections/discover.ejs');
             });
           }
@@ -63,6 +63,7 @@
                             }
                             res.locals.currentUser = req.user;
                             res.locals.alltheBags = collectionResults;
+                            console.log(collectionResults);
                             res.render('collections/discover.ejs');
                           }
                       );
@@ -240,6 +241,14 @@
 ///// --[@]-- [COLLECTION ROUTES] ----- -END-
 
 ///// --[#]-- [JAVASCRIPT LOGIC] ----- >>>>>
+  // function changeMode(mode, searchString) {
+  //   if (mode === 'reddit') {
+  //     return 'reddit';
+  //   }
+  //   if (mode === 'giphy') {
+  //     return 'giphy';
+  //   }
+  // }
 ///// --[@]-- [JAVASCRIPT LOGIC] ----- -END-
 
 ///// --[#]-- [EXPORT] ----- >>>>>
