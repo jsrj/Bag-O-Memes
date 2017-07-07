@@ -18,10 +18,11 @@ router.get('/discover',
   (req, res, next) =>
     {
       mode = 'giphy'; // change to be equal to a param sent from discover link
+      searchWord = req.query.searchWord;
       if (mode === 'reddit')
       {
               // console.log(req.body.searchWord);
-              let redditSearch = req.query.searchWord; // change to be equal to a param that is sent from each link in discover
+              let redditSearch = searchWord; // change to be equal to a param that is sent from each link in discover
               res.locals.subreddit = redditSearch;
               console.log('');
               console.log('');
@@ -38,7 +39,7 @@ router.get('/discover',
       }
       else if (mode === 'giphy')
       {
-              let giphySearch = req.query.searchWord;
+              let giphySearch = searchWord;
               giphy.search(giphySearch, 10, 0, 'pg',function (err, data) {
                 if(err) throw err;
 
