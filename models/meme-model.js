@@ -16,9 +16,10 @@
         fileURL           : {type: String}, //.........................................post.data.url
         thumbnailURL      : {type: String,  default: '/images/default-thumbnail.jpg'},//post.data.thumbnail
         comments          : {type: Array,   default: []},//............................these will have to come from individual users.
-        upVotes           : {Type: Number,  default: 0},//.............................increment similarly to user's bagCount
+        upVotes           : {type: Number,  default: 0},//.............................increment similarly to user's bagCount
         downVotes         : {type: Number,  default: 0},//.............................increments similarly to user's bagCount
-        nsfw              : {type: Boolean, default: false}//..........................always going to be false until I allow NSFW
+        nsfw              : {type: Boolean, default: false},//.........................always going to be false until I allow NSFW
+        mode              : {type: String}//...........................................either going to be reddit or giphy right now. more later.
       },
       {timestamps: true}
     );

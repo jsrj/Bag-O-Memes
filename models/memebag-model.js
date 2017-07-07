@@ -14,7 +14,7 @@
         collectionDetails : {type: String},//................................Should never be blank. Required data from users.
         owner             : {type: String, default: 'Unknown'},//............Autofilled from currentUser | req.user
         ownerByID         : {type: String},//................................May not need this now that serialization is working
-        itemCount         : {type: Number, default: 0},//....................Should increment and decrement when a bag is crated or deleted
+        itemCount         : {type: Number, default: 0},//....................Should increment and decrement when a meme is added or removed
         fileURL           : {type: String},//................................Thumbnail URL
         ALLtheMemes       : {type: Array,  default: []},//...................An array of every meme saved do this bag.
         comments          : {type: Array, default: []}//.....................An array that stores any comment made by users that bag was shared with.

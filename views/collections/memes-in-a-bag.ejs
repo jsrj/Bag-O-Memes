@@ -1,0 +1,99 @@
+<h2 style="color: white; margin-left: 20px;"> <% // memebag name %> </h2>
+<div class="discover-board ui cards raised segment">
+<% theBag.ALLtheMemes.forEach((oneMeme) => { %>
+<% if (oneMeme.mode === 'giphy') { %>
+<!-- -->
+      <div class="card treasure">
+
+          <div class="image">
+            <a href="/memes_in_a_bag">
+            <img class="image" src="<%= oneMeme.fileURL %>" style="width: 100% !important; height: 35vh;">
+            </a>
+          </div>
+
+        <div class="content">
+          <a class="header">
+          <div class="header"></div></a>
+
+          <div class="meta">
+            <img src='/images/<%= oneMeme.mode %>.png' style="border: none; border-radius: 100%; width: 15px; height: 15px;">
+            #<%= oneMeme.memeName %>
+            <br />
+            <br />
+            Source: <a class="text" href="http://<%= oneMeme.memeSource %>"><%= oneMeme.memeSource %></a>
+          </div>
+          <br />
+          <br />
+          <div class="description">
+          Shared By: <%= oneMeme.sharedBy %>
+          </div>
+        </div>
+
+        <div class="extra content">
+          <button class="ui label">
+          <i class="thumbs outline up icon"></i> 42
+          </button>
+          <button class="ui label">
+          <i class="thumbs outline down icon"></i> 2
+          </button>
+          <button class="ui label">
+          <i class="comments outline icon"></i>
+          <% %>0
+          </button>
+          &nbsp;
+          |
+          <span class="right floated">
+          <a class="ui label">Share</a>
+          </span>
+        </div>
+
+      </div>
+      <!-- -->
+      <% } %>
+
+<% if (oneMeme.mode === 'reddit') { %>
+<!-- -->
+      <div class="card treasure">
+
+          <div class="image">
+            <a href="/memes_in_a_bag">
+            <img class="image" src="<%= oneMeme.fileURL %>" style="width: 100% !important; height: 35vh;">
+            </a>
+          </div>
+
+        <div class="content">
+          <a class="header">
+          <div class="header">  <%= oneMeme.memeName %></div>
+          </a>
+
+          <div class="meta">By: <%%></div>
+          <br />
+          <br />
+          <div class="description">
+          <%%>
+          </div>
+        </div>
+
+        <div class="extra content">
+          <button class="ui label">
+          <i class="thumbs outline up icon"></i> 42
+          </button>
+          <button class="ui label">
+          <i class="thumbs outline down icon"></i> 2
+          </button>
+          <button class="ui label">
+          <i class="comments outline icon"></i>
+          <% %>0
+          </button>
+          &nbsp;
+          |
+          <span class="right floated">
+          <a class="ui label">Share</a>
+          </span>
+        </div>
+
+      </div>
+      <!-- -->
+      <% } %>
+<% }); %>
+</div>

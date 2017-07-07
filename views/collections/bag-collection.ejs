@@ -1,26 +1,28 @@
 
-<body class="default-bggit ">
-
 <h2 style="color: white; margin-left: 20px;"> <%= currentUser.fullname %>'s Meme Bags </h2>
 <div class="discover-board ui cards raised segment">
 
-<% alltheBags.forEach((oneCollection) => { %>
+<% alltheBags.forEach((oneBag) => { %>
 
 <!-- -->
       <div class="card treasure">
 
           <div class="image">
-              <img class="image" src="<%= oneCollection.fileURL %>" style="width: 290px !important; height: 150px;">
-
+            <a href="/memes_in_a_bag">
+            <img class="image" src="<%= oneBag.fileURL %>" style="width: 100% !important; height: 35vh;">
+            </a>
           </div>
 
         <div class="content">
-          <div class="header"><%= oneCollection.collectionName %></div>
-          <div class="meta">By: <%= oneCollection.owner %></div>
+          <a class="header">
+          <div class="header"><%= oneBag.collectionName %></div>
+          </a>
+
+          <div class="meta">By: <%= oneBag.owner %></div>
           <br />
           <br />
           <div class="description">
-          <%= oneCollection.collectionDetails %>
+          <%= oneBag.collectionDetails %>
           </div>
         </div>
 
@@ -30,7 +32,7 @@
           </span>
           <span>
             <i class="cubes icon"></i>
-            <%= oneCollection.itemCount %> Things Inside
+            <%= oneBag.ALLtheMemes.length %> Goodies Inside
           </span>
         </div>
 
