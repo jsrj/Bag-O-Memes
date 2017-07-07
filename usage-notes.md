@@ -20,3 +20,16 @@ reddit.get('/r/reallifedoodles.json', function(err, response) {
 
       usermode findbyid
       usermodel update
+
+
+      <form action='/discover' method='post'>
+<select multiple="multiple" id="my-select" name="searchWord">
+      <option value='blep'>blep</option>
+      <option value='elem_2'>elem 2</option>
+      <option value='elem_3'>elem 3</option>
+      <option value='elem_4'>elem 4</option>
+      ...
+      <option value='elem_100'>elem 100</option>
+    </select>
+    <button type='submit'>DO THE THING</button>
+</form>

@@ -19,6 +19,11 @@ router.get('/discover',
     {
       mode = 'giphy'; // change to be equal to a param sent from discover link
       searchWord = req.query.searchWord;
+      if (typeof searchWord === undefined)
+        res.redirect('/');
+      {
+        searchWord === 'random';
+      }
       if (mode === 'reddit')
       {
               // console.log(req.body.searchWord);
