@@ -167,7 +167,7 @@
 
   ///// --[#]-- [MEMES_IN_A_BAG] ----- >>>>>
     router.get
-      ('/memes_in_a_bag',
+      ('/memes_in_a_bag/:bagName',
         (req, res, next) =>
           {
             if(!req.user) {
@@ -175,7 +175,7 @@
             }
             MemebagModel.findOne
               (
-                {collectionName : "A BAG"},
+                {collectionName : req.params.bagName},
                 (err, theBag) =>
                   {
                     if (err) {
