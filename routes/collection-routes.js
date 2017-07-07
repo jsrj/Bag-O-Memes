@@ -20,14 +20,15 @@ router.get('/discover',
       mode = 'giphy'; // change to be equal to a param sent from discover link
       if (mode === 'reddit')
       {
-              let RedditDiscoverType = 'r/reallifedoodles'; // change to be equal to a param that is sent from each link in discover
-              res.locals.subreddit = RedditDiscoverType;
+              // console.log(req.body.searchWord);
+              let redditSearch = req.query.searchWord; // change to be equal to a param that is sent from each link in discover
+              res.locals.subreddit = redditSearch;
               console.log('');
               console.log('');
-              console.log('Subreddit: ' + RedditDiscoverType);
+              console.log('Subreddit: ' + redditSearch);
               console.log('');
 
-              reddit.get(RedditDiscoverType+'.json', function(err, response) {
+              reddit.get('r/' + redditSearch + '.json', function(err, response) {
                 if(err) throw err;
 
                 res.locals.dankSource = mode;
@@ -37,7 +38,7 @@ router.get('/discover',
       }
       else if (mode === 'giphy')
       {
-              let giphySearch = 'random';
+              let giphySearch = req.query.searchWord;
               giphy.search(giphySearch, 10, 0, 'pg',function (err, data) {
                 if(err) throw err;
 

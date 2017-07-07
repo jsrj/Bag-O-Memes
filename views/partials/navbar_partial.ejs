@@ -58,14 +58,14 @@
           </div>
 
       </div>
-      <div class="item">
+      <div class="item" name='mode' value='giphy'>
         <img class="ui avatar image" src="/images/giphy.png">
         Giphy
       </div>
     </div>
   </div>
-  <input class="ui search">
-  <button class="search-form-submit"><i class="search icon"></i></button>
+  <input class="ui search panel" style="width: 80px; border: 1px solid grey; border-radius: 2px;" name='searchWord'>
+  <button class="search-form-submit"><div style="background: black; width: 30px; height: 30px; border: none; border-radius: 100%; padding: 25%; justify-content: center !important;"><i class="inverted search icon" style="margin: 1% auto;"></i></div></button>
 </form>
     <!-- LEFT NAV -->
 
@@ -79,7 +79,13 @@
 
 
     <div class="ui right dropdown item">
-      <img src="/images/default-profile-picture.jpg" id="avatar">
+      <% if (currentUser.facebookID !== 'none') { %>
+      <img src="http://graph.facebook.com/<%= currentUser.facebookID %>/picture" id="avatar">
+      <% } else if (currentUser.googleID !== 'none') { %>
+      <img src="http://graph.facebook.com/<%= currentUser.facebookID %>/picture" id="avatar">
+      <% } else { %>
+      <img src="<%= currentUser.profilePic %>" id="avatar">
+      <% } %>
           <%= currentUser.fullname %>
     <i class="dropdown icon"></i>
     <div class="menu">

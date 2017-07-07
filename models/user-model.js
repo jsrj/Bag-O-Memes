@@ -9,6 +9,7 @@
         fullname     : {type: String, default: 'Nameless User'},
         username     : {type: String, default: this.fullname},
         email        : {type: String, default: 'zxcvbn@qwerty.iop'},
+        profilePic   : {type: String, default: '/images/default-profile-picture.jpg'},
         obsfpassword : {type: String},
         facebookID   : {type: String, default: 'none'},
         googleID     : {type: String, default: 'none'},
