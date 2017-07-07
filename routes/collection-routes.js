@@ -207,6 +207,7 @@
           {
             if(!req.user) {
               res.redirect('/login');
+              return;
             }
             if (req.body.mode === 'giphy')
             {
@@ -226,12 +227,14 @@
                   next(err);
                   return;
                 }
-                res.redirect('/discover?searchWord=' + searchWord);
+                res.redirect('/discover?searchWord=' + req.body.memeName + '&modeSelecta=' + req.body.mode);
+
               }
             );
             }
-            if (req.body.mode === 'reddit')
+            else if (req.body.mode === 'reddit')
             {
+                res.redirect('/discover?searchWord=' + req.body.memeName + '&modeSelecta=' + req.body.mode);
 
             }
           }
