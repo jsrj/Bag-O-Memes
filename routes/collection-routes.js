@@ -37,6 +37,7 @@
                     if(err) throw err;
 
                     res.locals.dankSource = mode;
+                    res.locals.searchWord = searchWord;
                     res.locals.response   = response.data.children;
                     if (!req.user) {
                       console.log('no bags to add to since you arent logged in');
