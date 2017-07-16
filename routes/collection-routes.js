@@ -17,7 +17,6 @@
     router.get('/discover',
       (req, res, next) =>
         {
-
           let searchWord = req.query.searchWord;
           const mode       = req.query.modeSelecta;
           res.locals.mode = mode;
@@ -39,7 +38,24 @@
 
                     res.locals.dankSource = mode;
                     res.locals.response   = response.data.children;
-                    res.render('collections/discover.ejs');
+                    if (!req.user) {
+                      console.log('no bags to add to since you arent logged in');
+                      res.render('collections/discover.ejs');
+                    } else {
+                    MemebagModel.find (
+                        {ownerByID: req.user._id},
+                        (err, collectionResults) => {
+                            if (err) {
+                              next(err);
+                              return;
+                            }
+                            res.locals.currentUser = req.user;
+                            res.locals.alltheBags = collectionResults;
+                            console.log(collectionResults);
+
+                            res.render('collections/discover.ejs');
+                          });}
+                    // res.render('collections/discover.ejs');
             });
           }
           else if (mode === 'giphy')
@@ -51,12 +67,13 @@
                     res.locals.searchWord = giphySearch;
                     res.locals.dankSource = mode;
                     res.locals.response   = data.data;
-                    MemebagModel.find
-                      (
+                    if (!req.user) {
+                      console.log('no bags to add to since you arent logged in');
+                      res.render('collections/discover.ejs');
+                    } else {
+                    MemebagModel.find (
                         {ownerByID: req.user._id},
-
-                        (err, collectionResults) =>
-                          {
+                        (err, collectionResults) => {
                             if (err) {
                               next(err);
                               return;
@@ -65,8 +82,7 @@
                             res.locals.alltheBags = collectionResults;
                             console.log(collectionResults);
                             res.render('collections/discover.ejs');
-                          }
-                      );
+                          });}
         // use data, returns the data as an object
     });
           }

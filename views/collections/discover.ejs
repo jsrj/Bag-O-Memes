@@ -66,7 +66,7 @@
           <span class="right floated">
             More | Share
           </span>
-
+          <% if (typeof currentUser === 'object') { %>
           <!-- REDDIT MEME SAVE (BASED OFF OF MEME-MODEL)-->
           <form method='get' action='/discover'>
           <input type='hidden' name='memeName'       value='<%= post.data.title %>'>
@@ -83,7 +83,7 @@
           </button>
           </form>
           <!-- REDDIT MEME SAVE-->
-
+          <% } %>
         </div>
 
       </div>
@@ -115,30 +115,31 @@
           <span class="right floated">
             More | Share
           </span>
-
-          <!-- REDDIT MEME SAVE (BASED OFF OF MEME-MODEL)-->
-          <form>
-          <input type='hidden' name='memeName'       value='<%= post.data.title %>'>
-          <input type='hidden' name='memeSource'     value='<%= post.data.subreddit_name_prefixed %>'>
-          <input type='hidden' name='originalPoster' value='<%= post.data.author %>'>
-          <input type='hidden' name='sharedBy'       value='<%= currentUser.fullname %>'>
-          <input type='hidden' name='fileURL'        value='<%= post.data.url %>'>
-          <input type='hidden' name='thumbnailURL'   value='<%= post.data.thumbnail %>'>
-          <input type='hidden' name='nsfw'           value='<%= post.data.over_18 %>'>
-          <input type='hidden' name='mode'           value='reddit'>
-          <button>
-            <i class="hand lizard icon"></i>
-            <a>Add To Bag</a>
-
-            <select class="ui search dropdown">
+              <% if (typeof currentUser === 'object') { %>
+ <!-- GIPHY MEME SAVE (BASED OFF OF MEME-MODEL)-->
+              <div class="ui floating dropdown labeled search icon button" name='targetBag' style="padding:2px 35px !important;width:115px !important;">
+              <i class="hand lizard icon"></i>
+              <span class="text">Add To</span>
+              <div class="menu">
               <% alltheBags.forEach((oneBag) => { %>
-                <option value="<%= oneBag._id %>"><%= oneBag.collectionName %></option>
-              <% }); %>
-            </select>
 
-          </button>
-          </form>
-          <!-- REDDIT MEME SAVE-->
+              <div class="item">
+
+              <form action='/add-to-bag' method='post'>
+                <input type='hidden' name='memeName'       value='<%= searchWord %>'>
+                <input type='hidden' name='memeSource'     value='<%= post.source_tld %>'>
+                <input type='hidden' name='sharedBy'       value='<%= currentUser.fullname %>'>
+                <input type='hidden' name='fileURL'        value='<%= post.images.downsized_large.url %>'>
+                <input type='hidden' name='mode'           value='giphy'>
+                <input type='hidden' name='targetBag'      value='<%= oneBag._id %>'>
+                <button><%= oneBag.collectionName %></button>
+              </form>
+              </div>
+
+              <% }); %>
+              </div>
+            </div>
+            <% } %>
         </div>
 
       </div>
@@ -175,7 +176,7 @@
           <span class="right floated">
             <a href="/discover?searchWord=<%= post.source_tld %>">More</a> | Share
           </span>
-
+          <% if (typeof currentUser === 'object') { %>
           <!-- GIPHY MEME SAVE (BASED OFF OF MEME-MODEL)-->
               <div class="ui floating dropdown labeled search icon button" name='targetBag' style="padding:2px 35px !important;width:115px !important;">
               <i class="hand lizard icon"></i>
@@ -183,7 +184,7 @@
               <div class="menu">
               <% alltheBags.forEach((oneBag) => { %>
 
-              <div class="item">
+              <div class="item beautified">
 
               <form action='/add-to-bag' method='post'>
                 <input type='hidden' name='memeName'       value='<%= searchWord %>'>
@@ -192,7 +193,7 @@
                 <input type='hidden' name='fileURL'        value='<%= post.images.downsized_large.url %>'>
                 <input type='hidden' name='mode'           value='giphy'>
                 <input type='hidden' name='targetBag'      value='<%= oneBag._id %>'>
-                <button><%= oneBag.collectionName %></button>
+                <button class="beautified"><%= oneBag.collectionName %></button>
               </form>
               </div>
 
@@ -205,6 +206,7 @@
 
 
           <!-- GIPHY MEME SAVE-->
+          <% } %>
         </div>
         </div>
 <% } %>

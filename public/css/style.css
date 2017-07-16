@@ -27,7 +27,7 @@
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #3A4750;
+  background-color: #1E5287;
   color: #000;
   background-size: cover;
   background-repeat: no-repeat;
@@ -98,4 +98,11 @@ body .social-container .social {
   width: 160px;
   margin: 0 1.5vw;
   padding: 15px;
+}
+
+.beautified {
+  display: flex;
+  justify-content: center;
+  border: none;
+  background: transparent;
 }
