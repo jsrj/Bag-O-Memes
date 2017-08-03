@@ -29,5 +29,8 @@
     "react": "^15.6.1",
     "redditor": "^1.1.1",
     "serve-favicon": "~2.3.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.12"
   }
 }

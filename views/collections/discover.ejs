@@ -1,12 +1,9 @@
 <!-- COLLECTION HEADER -->
-<!-- Mode Logo -->
-<div class="ui panel" style="width: 12vw; height: 12vw; background-color: white; margin: 1% auto; border: none; border-radius: 100%">
-<img src="/images/<%= mode %>.png" style="width: 10vw; height 10vh; margin: 8.5%;">
-
-</div>
-<!-- MODE Logo -->
-<!-- Source/search type | subreddit -->
-<!-- Source/search type | subreddit -->
+  <!-- Mode Logo -->
+    <div class="ui panel" style="width: 12vw; height: 12vw; background-color: white; margin: 1% auto; border: none; border-radius: 100%">
+      <img src="/images/<%= mode %>.png" style="width: 10vw; height 10vh; margin: 8.5%;">
+    </div>
+  <!-- MODE Logo -->
 <!-- COLLECTION HEADER -->
 
 <!-- COLLECTION CONTENT -->
@@ -115,7 +112,8 @@
           <span class="right floated">
             More | Share
           </span>
-              <% if (typeof currentUser === 'object') { %>
+              <% if (typeof currentUser === 'object'
+                      && dankSource === 'giphy') { %>
  <!-- GIPHY MEME SAVE (BASED OFF OF MEME-MODEL)-->
               <div class="ui floating dropdown labeled search icon button" name='targetBag' style="padding:2px 35px !important;width:115px !important;">
               <i class="hand lizard icon"></i>
@@ -124,19 +122,17 @@
               <% alltheBags.forEach((oneBag) => { %>
 
               <div class="item">
-
               <form action='/add-to-bag' method='post'>
                 <input type='hidden' name='memeName'       value='<%= searchWord %>'>
                 <input type='hidden' name='memeSource'     value='<%= post.source_tld %>'>
                 <input type='hidden' name='sharedBy'       value='<%= currentUser.fullname %>'>
-                <input type='hidden' name='fileURL'        value='<%= post.images.downsized_large.url %>'>
-                <input type='hidden' name='mode'           value='giphy'>
+                <input type='hidden' name='mode'           value='reddit'>
                 <input type='hidden' name='targetBag'      value='<%= oneBag._id %>'>
                 <button><%= oneBag.collectionName %></button>
               </form>
               </div>
-
               <% }); %>
+
               </div>
             </div>
             <% } %>
@@ -157,66 +153,57 @@
   <!-- REDDIT BASED RESPONSES -->
   <% } %>
 
+
+
+
 <% if (dankSource === 'giphy') { %>
     <!-- GIPHY BASED RESPONSES -->
-          <div class="card treasure">
-
-          <div class="image">
+    <div class="card treasure">
+            <div class="image">
               <img src="<%= post.images.downsized_large.url %>" style="width: 100% !important; height: 35vh;">
-          </div>
+            </div>
 
-        <div class="content">
-          <div class="meta"># <%= searchWord %></div>
-          <div class="description">
-            &nbsp;From:  <a href="<%= post.source %>" rel="noopener" target="_blank"><%= post.source_tld %></a>
-          </div>
-        </div>
-
-        <div class="extra content">
-          <span class="right floated">
-            <a href="/discover?searchWord=<%= post.source_tld %>">More</a> | Share
-          </span>
-          <% if (typeof currentUser === 'object') { %>
-          <!-- GIPHY MEME SAVE (BASED OFF OF MEME-MODEL)-->
-              <div class="ui floating dropdown labeled search icon button" name='targetBag' style="padding:2px 35px !important;width:115px !important;">
-              <i class="hand lizard icon"></i>
-              <span class="text">Add To</span>
-              <div class="menu">
-              <% alltheBags.forEach((oneBag) => { %>
-
-              <div class="item beautified">
-
-              <form action='/add-to-bag' method='post'>
-                <input type='hidden' name='memeName'       value='<%= searchWord %>'>
-                <input type='hidden' name='memeSource'     value='<%= post.source_tld %>'>
-                <input type='hidden' name='sharedBy'       value='<%= currentUser.fullname %>'>
-                <input type='hidden' name='fileURL'        value='<%= post.images.downsized_large.url %>'>
-                <input type='hidden' name='mode'           value='giphy'>
-                <input type='hidden' name='targetBag'      value='<%= oneBag._id %>'>
-                <button class="beautified"><%= oneBag.collectionName %></button>
-              </form>
+            <div class="content">
+              <div class="meta">
+                # <%= searchWord %>
               </div>
-
-              <% }); %>
+              <div class="description">
+                &nbsp;From:  <a href="<%= post.source %>" rel="noopener" target="_blank"><%= post.source_tld %></a>
               </div>
             </div>
 
-
-
-
-
-          <!-- GIPHY MEME SAVE-->
-          <% } %>
-        </div>
-        </div>
+            <div class="extra content">
+              <span class="right floated">
+                <a href="/discover?searchWord=<%= post.source_tld %>">More</a> | Share
+              </span>
+              <% if (typeof currentUser === 'object') { %>
+              <!-- GIPHY MEME SAVE (BASED OFF OF MEME-MODEL)-->
+                  <div class="ui floating dropdown labeled search icon button" name='targetBag' style="padding:2px 35px !important;width:115px !important;">
+                  <i class="hand lizard icon"></i>
+                  <span class="text">Add To</span>
+                  <div class="menu">
+                  <% alltheBags.forEach((oneBag) => { %>
+                  <div class="item beautified">
+                  <form action='/add-to-bag' method='post'>
+                    <input type='hidden' name='memeName'       value='<%= searchWord %>'>
+                    <input type='hidden' name='memeSource'     value='<%= post.source_tld %>'>
+                    <input type='hidden' name='sharedBy'       value='<%= currentUser.fullname %>'>
+                    <input type='hidden' name='fileURL'        value='<%= post.images.downsized_large.url %>'>
+                    <input type='hidden' name='mode'           value='giphy'>
+                    <input type='hidden' name='targetBag'      value='<%= oneBag._id %>'>
+                    <button class="beautified"><%= oneBag.collectionName %></button>
+                  </form>
+                  </div>
+                  <% }); %>
+                  </div>
+                </div>
+              <!-- GIPHY MEME SAVE-->
+              <% } %>
+            </div>
+    </div>
 <% } %>
-
 <% }); %>
 
 </div>
 <!-- COLLECTION CONTENT -->
-
-
-<!-- HIDDEN FORM THAT AUTOPOPULATES WITH DATA ON EACH MEME DISPLAYED. WHEN 'ADD TO BAG' IS CLICKED ON A MEME, THAT FORM IS POSTED AS A NEW OBJECT -->
-<form>
 
