@@ -5,7 +5,7 @@
   const GoogleStrategy  = require     ('passport-google-oauth').OAuth2Strategy;
   const bcrypt          = require     ('bcrypt');
   const UserModel       = require     ('../models/user-model.js');
-    let bloppoDoggo     = console.log ('"Bloppo Doggo, The Error Overlord" is appeased.');
+
 ///// --[@]-- [SETUP] ----- -END-
 
 ///// --[#]-- [SERIALIZE USER] ----- >>>>>
